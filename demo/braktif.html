@@ -2,10 +2,34 @@
 <head>
   <meta charset="utf-8">
   <title>Braktif Demo</title>
+  <style>
+#output {
+  border: 1px solid blue;
+}
+#load {
+  display: none;
+}
+  </style>
 </head>
 <body>
 
 <h1>Braktif Demo</h1>
+
+<button id="load">Load</button>
+<button id="edit">Edit</button>
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<button id="step">Step</button>
+Speed: <input id="speed" type="range" min="0" max="200" value="0" />
+
+<span id="select_source_container">
+  <select id="select_source">
+    <option>(select one...)</option>
+    <option>test</option>
+    <option>test2</option>
+    <option>test3</option>
+  </select>
+</span>
 
 <textarea id="input" rows="10" cols="50">
                             *
@@ -17,11 +41,26 @@
 <pre id="output" style="border: 1px solid blue">
 </pre>
 
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-<button id="step">Step</button>
-<button id="load">Load</button>
-Speed: <input id="speed" type="range" min="0" max="200" value="0" />
+<div id="test" style="display: none;"
+>000000000000000000 &lt;*&lt;*&gt;*&gt;*&lt;*&lt;*&gt;*&gt;*
+-----------------d-i---------------
+</div>
+
+
+<div id="test2" style="display: none;"
+>                                                             &lt;*
+000000000000000000000000000000000000000000000000000000000 *[---]
+--------------------------------------------------------d-i-   --
+</div>
+
+
+<div id="test3" style="display: none;"
+>                            *
+                       &lt;&lt;*[--]*
+000000000000000000  *[-----  --]
+-----------------d-i--         --------
+
+</div>
 
 </body>
 <script src="yoob/controller.js"></script>
@@ -52,7 +91,11 @@ Speed: <input id="speed" type="range" min="0" max="200" value="0" />
     'stop': 'stop',
     'step': 'step',
     'load': 'load',
+    'edit': 'edit',
+    'speed': 'speed',
+    'select': 'select_source',
     'source': 'input',
-    'speed': 'speed'
+    'display': 'output'
   });
+  c.click_load();
 </script>
