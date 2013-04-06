@@ -45,6 +45,7 @@ Brainfuck F:
     +[>+]
 
 Braktif:
+
                           <*
     ... 00000000000000 *[---]
     ... -------------d-i-   --
@@ -55,7 +56,7 @@ So... why Braktif?
   the communication between the code and the tape is made explicit
   (and explicitly planar, FWIW WRT the wire-crossing problem.)
 - horribly inefficient because of this.  Flipping the _n_'th data cell
-  from the _m_'th instruction of the program is now an O(_n_+_m_)
+  from the _m_'th instruction of the program is now an _O(n+m)_
   operation.  What fun!
 - makes a passable "poor man's visual debugger" for Brainfuck F.
 - makes experimenting with concurrent models easily.  For example it
