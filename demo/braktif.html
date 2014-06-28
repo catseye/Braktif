@@ -9,6 +9,9 @@
 #load {
   display: none;
 }
+.example {
+  display: none;
+}
   </style>
 </head>
 <body>
@@ -22,39 +25,32 @@
 <button id="step">Step</button>
 Speed: <input id="speed" type="range" min="0" max="200" value="0" />
 
-<span id="select_source_container">
-  <select id="select_source">
-    <option>(select one...)</option>
-    <option>test</option>
-    <option>test2</option>
-    <option>test3</option>
-  </select>
-</span>
+<select id="select_source">
+  <option>(select one...)</option>
+  <option>test</option>
+  <option>test2</option>
+  <option>test3</option>
+</select>
 
-<textarea id="input" rows="10" cols="50">
-                            *
-                       &lt;&lt;*[--]*
-000000000000000000  *[-----  --]
------------------d-i--         --------
-</textarea>
+<textarea id="input" rows="10" cols="50"></textarea>
 
 <pre id="output" style="border: 1px solid blue">
 </pre>
 
-<div id="test" style="display: none;"
+<div class="example" id="test"
 >000000000000000000 &lt;*&lt;*&gt;*&gt;*&lt;*&lt;*&gt;*&gt;*
 -----------------d-i---------------
 </div>
 
 
-<div id="test2" style="display: none;"
+<div class="example" id="test2"
 >                                                             &lt;*
 000000000000000000000000000000000000000000000000000000000 *[---]
 --------------------------------------------------------d-i-   --
 </div>
 
 
-<div id="test3" style="display: none;"
+<div class="example" id="test3"
 >                            *
                        &lt;&lt;*[--]*
 000000000000000000  *[-----  --]
@@ -65,6 +61,7 @@ Speed: <input id="speed" type="range" min="0" max="200" value="0" />
 </body>
 <script src="yoob/controller.js"></script>
 <script src="yoob/playfield.js"></script>
+<script src="yoob/preset-manager.js"></script>
 <script src="../script/braktif.js"></script>
 <script>
   var output = document.getElementById('output');
@@ -93,9 +90,12 @@ Speed: <input id="speed" type="range" min="0" max="200" value="0" />
     'load': 'load',
     'edit': 'edit',
     'speed': 'speed',
-    'select': 'select_source',
     'source': 'input',
     'display': 'output'
   });
+  var p = (new yoob.PresetManager()).init({
+      selectElem: document.getElementById("select_source"),
+      controller: c
+  }).populateFromClass('example').select('test3');
   c.click_load();
 </script>
