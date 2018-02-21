@@ -71,16 +71,7 @@ function launch(prefix, container, config) {
     var p = (new yoob.PresetManager()).init({
       selectElem: selectConfiguration,
       controller: controller
-    });
-    function makeCallback(sourceText) {
-      return function(id) {
-        sourceManager.loadSource(sourceText);
-      }
-    }
-    for (var i = 0; i < exampleConfigurations.length; i++) {
-      p.add(exampleConfigurations[i][0], makeCallback(exampleConfigurations[i][1]));
-    }
-    p.select(exampleConfigurations[0][0]);
+    }).populateFromPairs(sourceManager, exampleConfigurations);
   };
   for (var i = 0; i < deps.length; i++) {
     var elem = document.createElement('script');
