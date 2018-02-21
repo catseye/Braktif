@@ -57,6 +57,7 @@ function launch(prefix, container, config) {
         generationView.draw();
       }
     });
+    controller.clickStop();
 
     var sourceManager = (new yoob.SourceManager()).init({
       panelContainer: controlPanel,
