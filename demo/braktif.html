@@ -2,94 +2,16 @@
 <head>
   <meta charset="utf-8">
   <title>Braktif Demo</title>
-  <style>
-#output {
-  border: 1px solid blue;
-}
-.example {
-  display: none;
-}
-  </style>
 </head>
 <body>
 
 <h1>Braktif Demo</h1>
 
-<button id="load">Load</button>
-<button id="edit">Edit</button>
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-<button id="step">Step</button>
-<button id="reset">Reset</button>
-Speed: <input id="speed" type="range" min="0" max="200" value="0" />
-
-<select id="select_source"></select>
-
-<textarea id="input" rows="10" cols="50"></textarea>
-
-<pre id="output" style="border: 1px solid blue">
-</pre>
-
-<div class="example" id="test"
->000000000000000000 &lt;*&lt;*&gt;*&gt;*&lt;*&lt;*&gt;*&gt;*
------------------d-i---------------
-</div>
-
-
-<div class="example" id="test2"
->                                                             &lt;*
-000000000000000000000000000000000000000000000000000000000 *[---]
---------------------------------------------------------d-i-   --
-</div>
-
-
-<div class="example" id="test3"
->                            *
-                       &lt;&lt;*[--]*
-000000000000000000  *[-----  --]
------------------d-i--         --------
-
-</div>
+<div id="container"></div>
 
 </body>
-<script src="yoob/controller.js"></script>
-<script src="yoob/playfield.js"></script>
-<script src="yoob/preset-manager.js"></script>
-<script src="../script/braktif.js"></script>
+<script src="../eg/index.js"></script>
+<script src="braktif-launcher.js"></script>
 <script>
-  var output = document.getElementById('output');
-  var c = new yoob.Controller();
-  var pf;
-  
-  c.load = function(text) {
-      pf = new yoob.Playfield();
-      pf.setDefault('Space');
-      pf.load(0, 0, text, loadMapper);
-      output.innerHTML = pf.dump(dumpMapper);
-  };
-
-  c.step = function() {
-      var newPf = new yoob.Playfield();
-      newPf.setDefault('Space');
-      evolve_playfield(pf, newPf);
-      pf = newPf;
-      output.innerHTML = pf.dump(dumpMapper);
-  };
-
-  c.connect({
-    'start': 'start',
-    'stop': 'stop',
-    'step': 'step',
-    'load': 'load',
-    'edit': 'edit',
-    'reset': 'reset',
-    'speed': 'speed',
-    'source': 'input',
-    'display': 'output'
-  });
-  var p = (new yoob.PresetManager()).init({
-      selectElem: document.getElementById("select_source"),
-      controller: c
-  }).populateFromClass('example').select('test3');
-  c.click_load();
+  launch('', 'container');
 </script>
